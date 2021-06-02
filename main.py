@@ -41,6 +41,10 @@ def main():
                 mid_x, mid_y = coordinates[HAND_LANDMARK.MIDDLE_FINGER_TIP]
                 cv2.rectangle(image, (idx_x-10, idx_y-20), (mid_x +10, mid_y+20),
                             (0, 255, 0), 10, cv2.FILLED)
+                # TODO
+                # Add diffrent color's options in frames on fix x, y
+                # make a varible of color and change it's according to idx_x and idx_y coords
+                
                 
             elif hand_tracking.is_finger_up(HAND_LANDMARK.INDEX_FINGER_TIP):
                 # Drawing mode
