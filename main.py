@@ -3,7 +3,7 @@ import numpy as np
 
 from drawing_mode import merge_image_and_canvas
 from hand_tracking import HAND_LANDMARK, HandTracking
-from selection_mode import place_header  # , select_color
+from selection_mode import place_header, select_color
 
 # Define the codec and create VideoWriter object
 # fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -47,14 +47,14 @@ def main():
                 idx_x, idx_y = coordinates[HAND_LANDMARK.INDEX_FINGER_TIP]
                 mid_x, mid_y = coordinates[HAND_LANDMARK.MIDDLE_FINGER_TIP]
                 cv2.rectangle(image, (idx_x-10, idx_y-20), (mid_x +10, mid_y+20),
-                            (0, 255, 0), 10, cv2.FILLED)
+                              color, 10, cv2.FILLED)
                 # Select color based on index finger location
-                # color = select_color(idx_x, idx_y)
+                color = select_color(idx_x, idx_y, color)
 
             elif hand_tracking.is_finger_up(HAND_LANDMARK.INDEX_FINGER_TIP):
                 # Drawing mode
                 idx_x, idx_y = coordinates[HAND_LANDMARK.INDEX_FINGER_TIP]
-                cv2.circle(image, (idx_x, idx_y), 5, (255, 0, 0), 10, cv2.FILLED)
+                cv2.circle(image, (idx_x, idx_y), 5, color, 10, cv2.FILLED)
                 if prvs_x == 0 and prvs_y == 0:
                     prvs_x, prvs_y = idx_x, idx_y
 

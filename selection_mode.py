@@ -29,8 +29,19 @@ def place_header(image):
     # cv2.putText(image, "Eraser", (1000, 200), cv2.FONT_HERSHEY_COMPLEX, 3, (0,0,0), 1, cv2.FILLED)
 
 
-# def select_color(idx_x, idx_y):
-#     ''' Change color according to position of index finger in selection mode'''
+def select_color(idx_x, idx_y, color):
+    ''' Change color according to position of index finger in selection mode'''
 
-#     if idx_x, idx_y in BLUE_RECTANGLE_COORDS:
-#         ##
+    # If y is in below range, then index finger is in color selection header
+    if idx_y in range(50, 150):
+        if idx_x in range(BLUE_RECTANGLE_COORDS[0][0], BLUE_RECTANGLE_COORDS[1][0]):
+            return BLUE
+        elif idx_x in range(GREEN_RECTANGLE_COORDS[0][0], GREEN_RECTANGLE_COORDS[1][0]):
+            return GREEN
+        elif idx_x in range(RED_RECTANGLE_COORDS[0][0], RED_RECTANGLE_COORDS[1][0]):
+            return RED
+        elif idx_x in range(YELLOW_RECTANGLE_COORDS[0][0], YELLOW_RECTANGLE_COORDS[1][0]):
+            return YELLOW
+
+    # return same color if finger is not in selection area
+    return color
