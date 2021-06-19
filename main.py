@@ -33,9 +33,9 @@ def main():
         # pass by reference.
         image.flags.writeable = False
         # Place header on image for color selection
-        place_header(image)
+        place_header(canvas)
         # Draw landmarks of detected hands in image
-        image = hand_tracking.draw_landmarks(image)
+        # image = hand_tracking.draw_landmarks(image)
         # Get coordinates of all the 21 landmark points
         coordinates = hand_tracking.get_coordinates(image, 0)
         if coordinates:
