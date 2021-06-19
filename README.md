@@ -14,7 +14,7 @@ Virtual paint can be used to paint in real time with hands detection, It can be 
 
 ## Demo
 
-   ![demo](https://user-images.githubusercontent.com/15001968/119997432-5ccc9d80-bfed-11eb-96b0-fdccb154132f.gif)
+   ![demo](https://user-images.githubusercontent.com/15001968/122640216-e1599a00-d11b-11eb-9055-8bf886192894.gif)
 
 
 
