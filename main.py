@@ -3,24 +3,24 @@ import numpy as np
 
 from drawing_mode import merge_image_and_canvas
 from hand_tracking import HAND_LANDMARK, HandTracking
-from selection_mode import place_header, select_color
+from selection_mode import place_header, select_color, BLUE
 
-# Define the codec and create VideoWriter object
-# fourcc = cv2.VideoWriter_fourcc(*'XVID')
-# out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
 cap = cv2.VideoCapture(0)
 frame_width = 1280
 frame_height = 720
 cap.set(3, frame_width)
 cap.set(4, frame_height)
 
+# Define the codec and create VideoWriter object
+# fourcc = cv2.VideoWriter_fourcc(*'XVID')
+# out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
 
 def main():
     ''' Main driver function for virtual_paint application '''
 
     hand_tracking = HandTracking(min_detection_confidence=0.8)
     # Default color of sketch, which can be changed in selection mode
-    color = (255, 0, 255)
+    color = BLUE
 
     canvas = np.zeros((frame_height, frame_width, 3), np.uint8)
     prvs_x, prvs_y = 0, 0 
