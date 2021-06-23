@@ -63,8 +63,8 @@ press q to exit.
 It is currently only a basic app. I'm planning to add many features to make it more usable.
 
 * Enabling/Disabling showing of hand landmarks points.
-* Instead of drawing with a single color, give multiple options of colors on frame.
-* Colors can be switched in selection mode.
+* Instead of drawing with a single color, give multiple options of colors on frame. (Done)
+* Colors can be switched in selection mode. (Done)
 * Option of saving the entire video of drawing session.
 * Option of saving only Drawing in diffrent image formats.
 * Currently it supports only 1 hand, Add 2 hands support.
