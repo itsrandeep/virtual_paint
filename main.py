@@ -8,10 +8,6 @@ from hand_tracking import HAND_LANDMARK, HandTracking
 from selection_mode import BLUE, place_header, select_color
 
 
-# Define the codec and create VideoWriter object
-# fourcc = cv2.VideoWriter_fourcc(*'XVID')
-# out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
-
 def main(args, cap, frame_width, frame_height):
     ''' Main driver function for virtual_paint application '''
 
@@ -95,5 +91,9 @@ if __name__ == "__main__":
     frame_height = 720
     cap.set(3, frame_width)
     cap.set(4, frame_height)
+
+    # Define the codec and create VideoWriter object
+    # fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    # out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
     # main driver function
     main(args, cap, frame_width, frame_height)
