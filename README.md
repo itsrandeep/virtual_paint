@@ -46,6 +46,7 @@ I would recommend to create a new virtual environment as it's always a good prac
    ```sh
    python main.py
    ```
+   (use -h for info about additional parameters)
 
 
 ## Usage
