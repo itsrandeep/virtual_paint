@@ -1,21 +1,18 @@
+import argparse
+
 import cv2
 import numpy as np
 
 from drawing_mode import merge_image_and_canvas
 from hand_tracking import HAND_LANDMARK, HandTracking
-from selection_mode import place_header, select_color, BLUE
+from selection_mode import BLUE, place_header, select_color
 
-cap = cv2.VideoCapture(0)
-frame_width = 1280
-frame_height = 720
-cap.set(3, frame_width)
-cap.set(4, frame_height)
 
 # Define the codec and create VideoWriter object
 # fourcc = cv2.VideoWriter_fourcc(*'XVID')
 # out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
 
-def main():
+def main(args, cap, frame_width, frame_height):
     ''' Main driver function for virtual_paint application '''
 
     hand_tracking = HandTracking(min_detection_confidence=0.8)
@@ -34,8 +31,10 @@ def main():
         image.flags.writeable = False
         # Place header on image for color selection
         place_header(canvas)
-        # Draw landmarks of detected hands in image
-        # image = hand_tracking.draw_landmarks(image)
+
+        if args.hand_landmarks:
+            # Draw landmarks of detected hands in image
+            image = hand_tracking.draw_landmarks(image)
         # Get coordinates of all the 21 landmark points
         coordinates = hand_tracking.get_coordinates(image, 0)
         if coordinates:
@@ -86,4 +85,15 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # construct the argument parse and parse the arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--hand-landmarks', action='store_true', help='Enable showing hand landmarks')
+    args = parser.parse_args()
+
+    cap = cv2.VideoCapture(0)
+    frame_width = 1280
+    frame_height = 720
+    cap.set(3, frame_width)
+    cap.set(4, frame_height)
+    # main driver function
+    main(args, cap, frame_width, frame_height)
