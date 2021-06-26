@@ -46,6 +46,7 @@ I would recommend to create a new virtual environment as it's always a good prac
    ```sh
    python main.py
    ```
+   (use -h for info about additional parameters)
 
 
 ## Usage
@@ -62,7 +63,7 @@ press q to exit.
 
 It is currently only a basic app. I'm planning to add many features to make it more usable.
 
-* Enabling/Disabling showing of hand landmarks points.
+* Enabling/Disabling showing of hand landmarks points. (Done.)
 * Instead of drawing with a single color, give multiple options of colors on frame. (Done)
 * Colors can be switched in selection mode. (Done)
 * Option of saving the entire video of drawing session.
