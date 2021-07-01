@@ -100,6 +100,8 @@ if __name__ == "__main__":
         # Define the codec and create VideoWriter object
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
         out = cv2.VideoWriter(f'{args.output_video}.mp4', fourcc, 20.0, (frame_width, frame_height))
-
-    # main driver function
-    main(args, cap, frame_width, frame_height, out)
+        # main driver function
+        main(args, cap, frame_width, frame_height, out)
+    else:
+        # main driver function without Videowriter
+        main(args, cap, frame_width, frame_height)
