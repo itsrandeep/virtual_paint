@@ -58,6 +58,18 @@ There are two modes in this application
 
 press q to exit.
 
+```usage
+usage: main.py [-h] [-hl] [-v FILENAME] [-i FILENAME]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -hl, --hand-landmarks
+                        Enable showing hand landmarks
+  -v FILENAME, --output-video FILENAME
+                        Name of the exported video file
+  -i FILENAME, --output-image FILENAME
+                        Name of the exported Image file
+```
 
 ## Roadmap
 
@@ -66,8 +78,8 @@ It is currently only a basic app. I'm planning to add many features to make it m
 * Enabling/Disabling showing of hand landmarks points. (Done.)
 * Instead of drawing with a single color, give multiple options of colors on frame. (Done)
 * Colors can be switched in selection mode. (Done)
-* Option of saving the entire video of drawing session.
-* Option of saving only Drawing in diffrent image formats.
+* Option of saving the entire video of drawing session. (Done)
+* Option of saving only Drawing in diffrent image formats.(Done, White background will be better)
 * Currently it supports only 1 hand, Add 2 hands support.
 * Integration in meeting apps like zoom.
 
