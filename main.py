@@ -70,6 +70,10 @@ def main(args, cap, frame_width, frame_height, out=None):
         if cv2.waitKey(5) & 0xff == ord('q'):
             break
 
+    if args.output_image:
+        # cropping the selection area from numpy
+        canvas = canvas[160:, :, :]
+        cv2.imwrite(args.output_image+'.jpg', canvas)
 
     # Close the window / Release webcam
     cap.release()
@@ -86,7 +90,8 @@ if __name__ == "__main__":
     # construct the argument parse and parse the arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-hl', '--hand-landmarks', action='store_true', help='Enable showing hand landmarks')
-    parser.add_argument('-ov', '--output-video', metavar=('FILENAME'), help="Name of the exported video file", type=str)
+    parser.add_argument('-v', '--output-video', metavar=('FILENAME'), help="Name of the exported video file", type=str)
+    parser.add_argument('-i', '--output-image', metavar=('FILENAME'), help="Name of the exported Image file", type=str)
 
     args = parser.parse_args()
 
