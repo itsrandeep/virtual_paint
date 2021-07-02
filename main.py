@@ -8,7 +8,7 @@ from hand_tracking import HAND_LANDMARK, HandTracking
 from selection_mode import BLUE, place_header, select_color
 
 
-def main(args, cap, frame_width, frame_height):
+def main(args, cap, frame_width, frame_height, out=None):
     ''' Main driver function for virtual_paint application '''
 
     hand_tracking = HandTracking(min_detection_confidence=0.8)
@@ -62,19 +62,25 @@ def main(args, cap, frame_width, frame_height):
 
         # place canvas on top of video feed from camera
         image = merge_image_and_canvas(image, canvas)
-
-        # out.write(image)
         cv2.imshow('Draw Board', image)
+
+        if args.output_video:
+            out.write(image)
 
         if cv2.waitKey(5) & 0xff == ord('q'):
             break
 
+    if args.output_image:
+        # cropping the selection area from numpy
+        canvas = canvas[160:, :, :]
+        cv2.imwrite(args.output_image+'.jpg', canvas)
 
     # Close the window / Release webcam
     cap.release()
-    
-    # After we release our webcam, we also release the output
-    # out.release() 
+
+    if args.output_video:
+        # After we release our webcam, we also release the output
+        out.release() 
     
     # De-allocate any associated memory usage 
     cv2.destroyAllWindows()
@@ -83,7 +89,10 @@ def main(args, cap, frame_width, frame_height):
 if __name__ == "__main__":
     # construct the argument parse and parse the arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--hand-landmarks', action='store_true', help='Enable showing hand landmarks')
+    parser.add_argument('-hl', '--hand-landmarks', action='store_true', help='Enable showing hand landmarks')
+    parser.add_argument('-v', '--output-video', metavar=('FILENAME'), help="Name of the exported video file", type=str)
+    parser.add_argument('-i', '--output-image', metavar=('FILENAME'), help="Name of the exported Image file", type=str)
+
     args = parser.parse_args()
 
     cap = cv2.VideoCapture(0)
@@ -92,8 +101,12 @@ if __name__ == "__main__":
     cap.set(3, frame_width)
     cap.set(4, frame_height)
 
-    # Define the codec and create VideoWriter object
-    # fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    # out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
-    # main driver function
-    main(args, cap, frame_width, frame_height)
+    if args.output_video:
+        # Define the codec and create VideoWriter object
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        out = cv2.VideoWriter(f'{args.output_video}.mp4', fourcc, 20.0, (frame_width, frame_height))
+        # main driver function
+        main(args, cap, frame_width, frame_height, out)
+    else:
+        # main driver function without Videowriter
+        main(args, cap, frame_width, frame_height)
